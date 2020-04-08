@@ -12,13 +12,13 @@ namespace Menu.Models.Tables
 
         public DbSet<TbSubMenu> TbSubMenus { get; set; }
         public DbSet<TbProduct> TbMenus { get; set; }
-        public MenuContext() : base("DefaultConnection")
+        public MenuContext() : base("DbConectionString")
         { }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<TbSubMenu>().HasMany(c => c.)
-                .WithMany(s => s.)
+            modelBuilder.Entity<TbSubMenu>().HasMany(c => c.TbProducts)
+                .WithMany(s => s.TbSubMenus)
                 .Map(t => t.MapLeftKey("")
                 .MapRightKey("")
                 .ToTable(""));
